@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Солнечная система — энциклопедия</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #0b0f2a 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* Шапка */
+        header {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 3px solid #ffaa00;
+        }
+
+        header h1 {
+            font-size: 42px;
+            color: #ffaa00;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        /* Меню навигации */
+        nav {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #ffaa00;
+        }
+
+        nav a {
+            color: #ffaa00;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Основной контент */
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* Карточка планеты */
+        .planet {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(5px);
+            border-left: 5px solid #ffaa00;
+            transition: transform 0.3s;
+        }
+
+        .planet:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .planet h2 {
+            font-size: 32px;
+            color: #ffaa00;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .planet h3 {
+            font-size: 24px;
+            margin: 20px 0 10px 0;
+            color: #ffcc66;
+        }
+
+        /* Оглавление внутри статьи */
+        .toc {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border: 1px solid #ffaa00;
+        }
+
+        .toc h4 {
+            margin-bottom: 10px;
+            color: #ffaa00;
+        }
+
+        .toc ul {
+            margin-left: 25px;
+        }
+
+        .toc a {
+            color: #ffcc66;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        /* Таблица характеристик */
+        .info-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .info-table th, .info-table td {
+            border: 1px solid #ffaa00;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .info-table th {
+            background: #ffaa00;
+            color: #0b0f2a;
+            width: 40%;
+        }
+
+        /* Список фактов */
+        .facts-list {
+            margin: 20px 0;
+            padding-left: 25px;
+        }
+
+        .facts-list li {
+            margin: 10px 0;
+        }
+
+        /* Источники */
+        .sources {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            border-left: 3px solid #ffaa00;
+        }
+
+        .sources a {
+            color: #ffcc66;
+        }
+
+        /* Подвал */
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 25px;
+            margin-top: 40px;
+            border-top: 1px solid #ffaa00;
+        }
+
+        /* Кнопка "Наверх" */
+        .go-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ffaa00;
+            color: #0b0f2a;
+            padding: 12px 18px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+
+        .go-top:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 28px;
+            }
+            nav a {
+                display: inline-block;
+                margin: 5px 12px;
+                font-size: 14px;
+            }
+            .planet h2 {
+                font-size: 24px;
+            }
+            .info-table th, .info-table td {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>🌌 Солнечная система</h1>
+    <p>Энциклопедия планет — факты, характеристики, история открытий</p>
+</header>
+
+<nav>
+    <a href="#mercury">☿ Меркурий</a>
+    <a href="#venus">♀ Венера</a>
+    <a href="#earth">🌍 Земля</a>
+    <a href="#mars">♂ Марс</a>
+    <a href="#jupiter">♃ Юпитер</a>
+    <a href="#saturn">🪐 Сатурн</a>
+    <a href="#uranus">⛢ Уран</a>
+    <a href="#neptune">♆ Нептун</a>
+</nav>
+
+<main>
+    <!-- Меркурий -->
+    <div id="mercury" class="planet">
+        <h2>☿ Меркурий</h2>
+        <div class="toc">
+            <h4>Содержание</h4>
+            <ul>
+                <li><a href="#mercury-info">Общая информация</a></li>
+                <li><a href="#mercury-facts">Интересные факты</a></li>
+                <li><a href="#mercury-sources">Источники</a></li>
+            </ul>
+        </div>
+
+        <h3 id="mercury-info">Общая информация</h3>
+        <p>Меркурий — самая маленькая и самая близкая к Солнцу планета Солнечной системы. Из-за близости к Солнцу днём температура поднимается до +430°C, а ночью падает до -180°C. Год на Меркурии длится всего 88 земных суток.</p>
+
+        <table class="info-table">
+            <tr><th>Характеристика</th><th>Значение</th></tr>
+            <tr><td>Диаметр</td><td>4 879 км</td></tr>
+            <tr><td>Расстояние от Солнца</td><td>58 млн км</td></tr>
+            <tr><td>Температура днём</td><td>до +430°C</td></tr>
+            <tr><td>Спутники</td><td>нет</td></tr>
+        </table>
+
+        <h3 id="mercury-facts">Интересные факты</h3>
+        <ul class="facts-list">
+            <li>Меркурий — самая быстрая планета, движется со скоростью 48 км/с.</li>
+            <li>На Меркурии нет атмосферы, поэтому небо всегда чёрное.</li>
+            <li>Из-за медленного вращения день длится 59 земных суток.</li>
+        </ul>
+
+        <div id="mercury-sources" class="sources">
+            <h4>📚 Источники</h4>
+            <ul>
+                <li><a href="https://ru.wikipedia.org/wiki/Меркурий" target="_blank">Википедия: Меркурий</a></li>
+                <li>«Астрономия для школьников», изд. «Просвещение», 2021</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Венера -->
+    <div id="venus" class="planet">
+        <h2>♀ Венера</h2>
+        <div class="toc">
+            <h4>Содержание</h4>
+            <ul>
+                <li><a href="#venus-info">Общая информация</a></li>
+                <li><a href="#venus-facts">Интересные факты</a></li>
+                <li><a href="#venus-sources">Источники</a></li>
+            </ul>
+        </div>
+
+        <h3 id="venus-info">Общая информация</h3>
+        <p>Венера — вторая планета от Солнца. Её называют «вечерней звездой», потому что она ярко видна на закате. Венера — самая горячая планета: температура достигает +470°C из-за парникового эффекта. Атмосфера состоит из углекислого газа и облаков серной кислоты.</p>
+
+        <table class="info-table">
+            <tr><th>Характеристика</th><th>Значение</th></tr>
+            <tr><td>Диаметр</td><td>12 104 км</td></tr>
+            <tr><td>Расстояние от Солнца</td><td>108 млн км</td></tr>
+            <tr><td>Температура</td><td>до +470°C</td></tr>
+            <tr><td>Спутники</td><td>нет</td></tr>
+        </table>
+
+        <h3 id="venus-facts">Интересные факты</h3>
+        <ul class="facts-list">
+            <li>Венера вращается в противоположную сторону от других планет.</li>
+            <li>Год на Венере короче дня: 225 дней против 243 дней.</li>
+            <li>Давление на поверхности в 92 раза выше земного.</li>
+        </ul>
+
+        <div id="venus-sources" class="sources">
+            <h4>📚 Источники</h4>
+            <ul>
+                <li><a href="https://ru.wikipedia.org/wiki/Венера" target="_blank">Википедия: Венера</a></li>
+                <li>Книга «Планеты и их тайны», изд. «Аванта+», 2020</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Земля -->
+    <div id="earth" class="planet">
+        <h2>🌍 Земля</h2>
+        <div class="toc">
+            <h4>Содержание</h4>
+            <ul>
+                <li><a href="#earth-info">Общая информация</a></li>
+                <li><a href="#earth-facts">Интересные факты</a></li>
+                <li><a href="#earth-sources">Источники</a></li>
+            </ul>
+        </div>
+
+        <h3 id="earth-info">Общая информация</h3>
+        <p>Земля — третья планета от Солнца, единственная известная планета, на которой есть жизнь. Около 71% поверхности покрыто водой. Земля имеет один естественный спутник — Луну.</p>
+
+        <table class="info-table">
+            <tr><th>Характеристика</th><th>Значение</th></tr>
+            <tr><td>Диаметр</td><td>12 742 км</td></tr>
+            <tr><td>Расстояние от Солнца</td><td>150 млн км</td></tr>
+            <tr><td>Температура</td><td>-89°C до +56°C</td></tr>
+            <tr><td>Спутники</td><td>1 (Луна)</td></tr>
+        </table>
+
+        <h3 id="earth-facts">Интересные факты</h3>
+        <ul class="facts-list">
+            <li>Земля — единственная планета с тектоникой плит.</li>
+            <li>Атмосфера Земли на 78% состоит из азота.</li>
+            <li>Самая высокая точка — гора Эверест (8 848 м).</li>
+        </ul>
+
+        <div id="earth-sources" class="sources">
+            <h4>📚 Источники</h4>
+            <ul>
+                <li><a href="https://ru.wikipedia.org/wiki/Земля" target="_blank">Википедия: Земля</a></li>
+                <li>Учебник географии 5 класс, 2022</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Марс -->
+    <div id="mars" class="planet">
+        <h2>♂ Марс</h2>
+        <div class="toc">
+            <h4>Содержание</h4>
+            <ul>
+                <li><a href="#mars-info">Общая информация</a></li>
+                <li><a href="#mars-facts">Интересные факты</a></li>
+                <li><a href="#mars-sources">Источники</a></li>
+            </ul>
+        </div>
+
+        <h3 id="mars-info">Общая информация</h3>
+        <p>Марс — четвёртая планета от Солнца, названа в честь бога войны из-за красного цвета (оксид железа в почве). На Марсе находится самый высокий вулкан в Солнечной системе — Олимп (21 км).</p>
+
+        <table class="info-table">
+            <tr><th>Характеристика</th><th>Значение</th></tr>
+            <tr><td>Диаметр</td><td>6 779 км</td></tr>
+            <tr><td>Расстояние от Солнца</td><td>228 млн км</td></tr>
+            <tr><td>Температура</td><td>-125°C до +20°C</td></tr>
+            <tr><td>Спутники</td><td>2 (Фобос, Деймос)</td></tr>
+        </table>
+
+        <h3 id="mars-facts">Интересные факты</h3>
+        <ul class="facts-list">
+            <li>Год на Марсе длится 687 земных дней.</li>
+            <li>На Марсе есть вода в виде льда.</li>
+            <li>Марсианские сутки почти такие же, как земные — 24 часа 37 минут.</li>
+        </ul>
+
+        <div id="mars-sources" class="sources">
+            <h4>📚 Источники</h4>
+            <ul>
+                <li><a href="https://ru.wikipedia.org/wiki/Марс" target="_blank">Википедия: Марс</a></li>
+                <li>NASA Solar System Exploration</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Юпитер -->
+    <div id="jupiter" class="planet">
+        <h2>♃ Юпитер</h2>
+        <div class="toc">
+            <h4>Содержание</h4>
+            <ul>
+                <li><a href="#jupiter-info">Общая информация</a></li>
+                <li><a href="#jupiter-facts">Интересные факты</a></li>
+                <li><a href="#jupiter-sources">Источники</a></li>
+            </ul>
+        </div>
+
+        <h3 id="jupiter-info">Общая информация</h3>
+        <p>Юпитер — самая большая планета Солнечной системы, газовый гигант. Его масса в 318 раз больше земной. Большое красное пятно — гигантский шторм, бушующий уже несколько сотен лет.</p>
+
+        <table class="info-table">
+            <tr><th>Характеристика</th><th>Значение</th></tr>
+            <tr><td>Диаметр</td><td>139 820 км</td></tr>
+            <tr><td>Расстояние от Солнца</td><td>778 млн км</td></tr>
+            <tr><td>Температура</td><td>-145°C</td></tr>
+            <tr><td>Спутники</td><td>95 (4 крупных: Ио, Европа, Ганимед, Каллисто)</td></tr>
+        </table>
+
+        <h3 id="jupiter-facts">Интересные факты</h3>
+        <ul class="facts-list">
+            <li>Юпитер — самая быстровращающаяся планета: день длится 10 часов.</li>
+            <li>Ганимед (спутник Юпитера) — самый большой спутник в системе.</li>
+            <li>Юпитер имеет слабые кольца, как у Сатурна.</li>
+        </ul>
+
+        <div id="jupiter-sources" class="sources">
+            <h4>📚 Источники</h4>
+            <ul>
+                <li><a href="https://ru.wikipedia.org/wiki/Юпитер" target="_blank">Википедия: Юпитер</a></li>
+                <li>Энциклопедия «Космос», изд. «Росмэн», 2019</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Сатурн -->
+    <div id="saturn" class="planet">
+        <h2>🪐 Сатурн</h2>
+        <div class="toc">
+            <h4>Содержание</h4>
+            <ul>
+                <li><a href="#saturn-info">Общая информация</a></li>
+                <li><a href="#saturn-facts">Интересные факты</a></li>
+                <li><a href="#saturn-sources">Источники</a></li>
+            </ul>
+        </div>
+
+        <h3 id="saturn-info">Общая информация</h3>
+        <p>Сатурн — шестая планета от Солнца, знаменита своими кольцами, состоящими изо льда и камней. Это газовый гигант, его плотность меньше плотности воды — он бы плавал, если бы нашёлся такой огромный океан.</p>
+
+        <table class="info-table">
+            <tr><th>Характеристика</th><th>Значение</th></tr>
+            <tr><td>Диаметр</td><td>116 460 км</td></tr>
+            <tr><td>Расстояние от Солнца</td><td>1,43 млрд км</td></tr>
+            <tr><td>Температура</td><td>-178°C</td></tr>
+            <tr><td>Спутники</td><td>146 (крупнейший — Титан)</td></tr>
+        </table>
+
+        <h3 id="saturn-facts">Интересные факты</h3>
+        <ul class="facts-list">
+            <li>Кольца Сатурна достигают толщины всего 1 км, но шириной до 282 000 км.</li>
+            <li>Титан — единственный спутник с плотной атмосферой.</li>
+            <li>Год на Сатурне длится 29,5 земных лет.</li>
+        </ul>
+
+        <div id="saturn-sources" class="sources">
+            <h4>📚 Источники</h4>
+            <ul>
+                <li><a href="https://ru.wikipedia.org/wiki/Сатурн" target="_blank">Википедия: Сатурн</a></li>
+                <li>Книга «Планеты-гиганты», 2020</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Уран -->
+    <div id="uranus" class="planet">
+        <h2>⛢ Уран</h2>
+        <div class="toc">
+            <h4>Содержание</h4>
+            <ul>
+                <li><a href="#uranus-info">Общая информация</a></li>
+                <li><a href="#uranus-facts">Интересные факты</a></li>
+                <li><a href="#uranus-sources">Источники</a></li>
+            </ul>
+        </div>
+
+        <h3 id="uranus-info">Общая информация</h3>
+        <p>Уран — седьмая планета от Солнца, ледяной гигант. Его уникальная особенность — он вращается «лёжа на боку» (ось наклонена на 98 градусов). Уран был первой планетой, открытой с помощью телескопа (Уильям Гершель, 1781 год).</p>
+
+        <table class="info-table">
+            <tr><th>Характеристика</th><th>Значение</th></tr>
+            <tr><td>Диаметр</td><td>50 724 км</td></tr>
+            <tr><td>Расстояние от Солнца</td><td>2,87 млрд км</td></tr>
+            <tr><td>Температура</td><td>-224°C</td></tr>
+            <tr><td>Спутники</td><td>27</td></tr>
+        </table>
+
+        <h3 id="uranus-facts">Интересные факты</h3>
+        <ul class="facts-list">
+            <li>Уран называют «ледяной планетой» из-за метана в атмосфере.</li>
+            <li>Один сезон на Уране длится 42 года.</li>
+            <li>Уран имеет бледно-голубой цвет из-за метана.</li>
+        </ul>
+
+        <div id="uranus-sources" class="sources">
+            <h4>📚 Источники</h4>
+            <ul>
+                <li><a href="https://ru.wikipedia.org/wiki/Уран_(планета)" target="_blank">Википедия: Уран</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Нептун -->
+    <div id="neptune" class="planet">
+        <h2>♆ Нептун</h2>
+        <div class="toc">
+            <h4>Содержание</h4>
+            <ul>
+                <li><a href="#neptune-info">Общая информация</a></li>
+                <li><a href="#neptune-facts">Интересные факты</a></li>
+                <li><a href="#neptune-sources">Источники</a></li>
+            </ul>
+        </div>
+
+        <h3 id="neptune-info">Общая информация</h3>
+        <p>Нептун — восьмая и самая дальняя планета Солнечной системы. Это ледяной гигант, на котором дуют самые сильные ветры в Солнечной системе (до 2100 км/ч). Нептун был открыт математически, а потом увиден в телескоп.</p>
+
+        <table class="info-table">
+            <tr><th>Характеристика</th><th>Значение</th></tr>
+            <tr><td>Диаметр</td><td>49 244 км</td></tr>
+            <tr><td>Расстояние от Солнца</td><td>4,5 млрд км</td></tr>
+            <tr><td>Температура</td><td>-218°C</td></tr>
+            <tr><td>Спутники</td><td>14 (крупнейший — Тритон)</td></tr>
+        </table>
+
+        <h3 id="neptune-facts">Интересные факты</h3>
+        <ul class="facts-list">
+            <li>Нептун совершает один оборот вокруг Солнца за 165 лет.</li>
+            <li>Тритон вращается в противоположную сторону от вращения Нептуна.</li>
+            <li>Нептун — самая холодная планета (хотя Уран дальше, но Нептун имеет внутренний источник тепла).</li>
+        </ul>
+
+        <div id="neptune-sources" class="sources">
+            <h4>📚 Источники</h4>
+            <ul>
+                <li><a href="https://ru.wikipedia.org/wiki/Нептун" target="_blank">Википедия: Нептун</a></li>
+                <li>«Атлас космоса», изд. «Астрель», 2018</li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <p>© 2026, Энциклопедия «Солнечная система». Все права защищены.</p>
+    <p>Проект ученика 9 класса. Все факты проверены.</p>
+</footer>
+
+<a href="#" class="go-top">↑</a>
+
+</body>
+</html>
